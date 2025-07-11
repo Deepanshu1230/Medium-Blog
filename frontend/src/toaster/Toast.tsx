@@ -33,7 +33,7 @@ const bgMap = {
   warning: "text-orange-500 bg-orange-100 dark:bg-orange-700 dark:text-orange-200",
 };
 
-export const Toast = ({ type, message, onClose, duration = 5000 }: ToastProps) => {
+export const Toast = ({ type, message, onClose, duration = 3000 }: ToastProps) => {
   useEffect(() => {
     const timeout = setTimeout(onClose, duration);
     return () => clearTimeout(timeout);

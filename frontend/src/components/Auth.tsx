@@ -3,7 +3,7 @@ import axios from "axios";
 import { useState, type ChangeEvent } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { BACKEND_URL } from "../config/config";
-import { Toast } from "../toaster/toast";
+import { Toast } from "../toaster/Toast";
 
 
 
@@ -27,7 +27,8 @@ export const Auth=({type} : {type: "signup" | "signin"})=>{
 
       const response=await axios.post(`${BACKEND_URL}/api/v1/user/${type === "signin" ? "signin" : "signup" }`, postInputs);
       
-      const jwt=response.data;
+      const jwt=response.data.jwt;
+      
 
       localStorage.setItem("token",jwt);
 
@@ -38,7 +39,7 @@ export const Auth=({type} : {type: "signup" | "signin"})=>{
         })
       }
 
-      navigate("/blog");
+      navigate("/blogs");
 
 
 

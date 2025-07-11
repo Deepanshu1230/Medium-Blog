@@ -12,7 +12,7 @@ export const BlogNave=()=>{
 
                 <div className="flex space-x-5 pr-4 items-center pt-2">
                     <div>Publish</div>
-                    <div><Avatar name="Deepanshu" size={10}/></div>
+                    <div><Avatar name="Deepanshu"/></div>
 
                 </div>
             </div>
