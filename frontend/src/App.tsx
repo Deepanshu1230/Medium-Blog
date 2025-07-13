@@ -6,6 +6,7 @@ import { Blog } from './pages/Blog';
 import { Signin } from './pages/Signin';
 import { Blogs } from './pages/Blogs';
 import { Main } from './pages/Main';
+import { Comming } from './components/CommingSoon';
 
 function App() {
   
@@ -19,6 +20,7 @@ function App() {
         <Route path='/signup' element={<Signup/>} />
          <Route path="/blog/:id" element={<Blog/>} />
          <Route path="/blogs" element={<Blogs/>} />
+         <Route path="/commingsoon" element={<Comming/>} />
         
 
 
