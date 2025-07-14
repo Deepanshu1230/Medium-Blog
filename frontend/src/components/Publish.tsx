@@ -3,16 +3,26 @@ import { Plus, MoreHorizontal, Bell, Sparkles, Eye, Clock, Heart, Feather } from
 import axios from "axios";
 import { BACKEND_URL } from "../config/config";
 import { Link, Navigate, useNavigate } from "react-router-dom";
+import { toast } from 'react-toastify';
+import { NewLoader } from "./Loader";
 
 
 
 export const Publish=()=>{
     const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const [loading,setloading]=useState(false);
   const navigate=useNavigate();
    
     async function HandlePublish () {
+      if (!title.trim() || !content.trim()) {
+  toast.error("Title and content cannot be empty");
+  return;
+}
+
         try {
+
+          setloading(true);
 
           const response= await axios.post(`${BACKEND_URL}/api/v1/blog`,{
           title,
@@ -22,15 +32,27 @@ export const Publish=()=>{
             Authorization:localStorage.getItem("token")
           }
         })
-
+         
+        toast(`Published Successfully`);
          navigate(`/blog/${response.data.id}`)
 
 
         }
         catch(e){
+          toast.error('Something Went Wrong');
+
 
         }
       
+    }
+
+
+    if(loading){
+      return (
+        <div>
+          <NewLoader/>
+        </div>
+      )
     }
 
     return (
@@ -47,7 +69,7 @@ export const Publish=()=>{
                 <div className="w-10 h-10 bg-black rounded-2xl flex items-center justify-center shadow-lg">
                   <Feather className="w-5 h-5 text-white" />
                 </div>
-                <span className="font-black text-2xl tracking-tight text-black">Kirags</span>
+                <span className="font-black text-2xl tracking-tight text-black">TalkTales</span>
               </div>
               </Link>
               
@@ -64,11 +86,11 @@ export const Publish=()=>{
 
             <div className="flex items-center space-x-6">
              
-              <button onClick={HandlePublish} className="bg-black hover:bg-black/90 text-white font-bold px-8 py-3 rounded-full uppercase tracking-wider text-sm transition-all duration-300 hover:shadow-xl hover:scale-105">
+              <button  disabled={loading} onClick={HandlePublish} className="bg-black flex items-center hover:bg-black/90 text-white font-bold py-2 px-3 md:px-8 md:py-3 rounded-full uppercase tracking-wider text-sm transition-all duration-300 hover:shadow-xl hover:scale-105">
                 Publish ✨
               </button>
 
-              <div>d</div>
+              
               
             </div>
           </div>

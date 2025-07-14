@@ -3,16 +3,13 @@ import axios from "axios";
 import { useState, type ChangeEvent } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { BACKEND_URL } from "../config/config";
-import { Toast } from "../toaster/Toast";
+import { toast } from 'react-toastify';
 
 
 
 export const Auth=({type} : {type: "signup" | "signin"})=>{
     const navigate=useNavigate();
-     const [toast, setToast] = useState<{
-    type: "success" | "error" | "warning";
-    message: string;
-  } | null>(null);
+     
 
     const [postInputs,setpostInput]=useState<SignupInput>({
         name:"",
@@ -28,15 +25,14 @@ export const Auth=({type} : {type: "signup" | "signin"})=>{
       const response=await axios.post(`${BACKEND_URL}/api/v1/user/${type === "signin" ? "signin" : "signup" }`, postInputs);
       
       const jwt=response.data.jwt;
+      const user=response.data.user;
       
 
       localStorage.setItem("token",jwt);
+      localStorage.setItem("user",JSON.stringify(user));
 
       if(response){
-        setToast({
-            type:"success",
-            message:`${type  === "signin" ? "Signin" : "Signup"} Successfull`
-        })
+        toast.success(`${type  === "signin" ? "Signin" : "Signup"} Successfull`)
       }
 
       navigate("/blogs");
@@ -46,10 +42,7 @@ export const Auth=({type} : {type: "signup" | "signin"})=>{
 
     }
     catch(err){
-        setToast({
-            type:"error",
-            message:`Unable to ${type === "signin" ? "Sign in" : "Sign up"}`
-        })
+        toast.error(`Enter Valid Credentials`)
 
     }
       
@@ -59,16 +52,7 @@ export const Auth=({type} : {type: "signup" | "signin"})=>{
     return (
         <>
 
-         {/* Toast Notification */}
-      <div className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50">
-        {toast && (
-          <Toast
-            type={toast.type}
-            message={toast.message}
-            onClose={() => setToast(null)}
-          />
-        )}
-      </div>
+        
       
              {/* Login page */}
             <div className="h-screen flex flex-col justify-center items-center">

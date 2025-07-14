@@ -8,11 +8,22 @@ import { Blogs } from './pages/Blogs';
 import { Main } from './pages/Main';
 import { Comming } from './components/CommingSoon';
 import { Publish } from './components/Publish';
+import { ToastContainer } from 'react-toastify';
 
 function App() {
   
   return (
     <>
+     <ToastContainer
+        position="top-center"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop
+        pauseOnFocusLoss={false}
+        draggable
+        pauseOnHover
+        theme="light"
+      />
       <BrowserRouter>
       <Routes>
          

@@ -1,17 +1,29 @@
 import { BlogCard } from "../components/BlogCard";
 import { BlogNave } from "../components/BlogNav";
+import { Skeleton } from "../components/BlogSkeleton";
 import { useBlogs } from "../hooks";
 import { format } from "date-fns";
 
 
 export const Blogs = () => {
   const {loading,blogs}=useBlogs();
+  
  
  
   if(loading){
     return(
-      <div>
-        Loading...
+      <div className=" flex flex-col">
+        <div className="shadow-sm bg-white  z-10">
+        <BlogNave  />
+      </div>
+        <div className="flex flex-col items-center gap-y-4 mt-4">
+          <Skeleton  />
+        <Skeleton/>
+        <Skeleton/>
+
+        </div>
+      
+        
       </div>
     )
   }
@@ -22,7 +34,7 @@ export const Blogs = () => {
     <div className="flex flex-col min-h-screen bg-gray-50">
       {/* Navigation */}
       <div className="shadow-sm bg-white  z-10">
-        <BlogNave />
+        <BlogNave  />
       </div>
       
 

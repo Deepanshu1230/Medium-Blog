@@ -15,7 +15,7 @@ export const Mainav= ()=>{
             whileHover={{scale: 1.02}}
             >
                 <img src="" alt="" />
-                <div className="font-semibold text-2xl ">SassBlog</div>
+                <div className="font-semibold text-2xl ">TalkTales</div>
 
             </motion.div>
 

@@ -70,7 +70,7 @@ export const Footer = () =>{
                 <div className="w-8 h-8 bg-black rounded-2xl flex items-center justify-center">
                   
                 </div>
-                <span className="text-xl font-semibold">SassyBlog</span>
+                <span className="text-xl font-semibold">TalkTales</span>
               </div>
               <p className="text-gray-600 mb-6 max-w-md leading-relaxed">
                 Intelligent writing tools that help you create better content with less effort.

@@ -1,7 +1,11 @@
 import { useParams } from "react-router-dom";
 import { FullBlog } from "../components/FullBlog";
 import { useBlog } from "../hooks";
-import type { Blogprop } from "../hooks"
+import { NewLoader } from "../components/Loader";
+import { BlogNave } from "../components/BlogNav";
+
+
+
 
 
 export const Blog=()=>{
@@ -12,9 +16,14 @@ export const Blog=()=>{
 
 
     if(loading){
-        return  <div>
-            loading...
+        return ( <div>
+            <div><BlogNave /></div>
+           <div>
+            <NewLoader/>
+            </div> 
         </div>
+
+        )
     }
     return (
         <>

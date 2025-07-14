@@ -8,7 +8,10 @@ import { BlogNave } from "./BlogNav"
 import { format } from "date-fns";
 import { BACKEND_URL } from "../config/config"
 import axios from "axios"
-import { useParams } from "react-router-dom"
+import { Link } from "react-router-dom"
+import {motion} from "framer-motion"
+import { toast } from 'react-toastify';
+
 
 
 export const FullBlog=({ blog } : {blog : Blog})=>{
@@ -36,13 +39,15 @@ const [aigenrated, setaigenerated] = useState(Boolean(blog.summary));
             id:blog.id,
             content:blog.content
         })
-
+         
+        toast("Generated Succesfully");
         setsummary(data.summary);
         setTags(data.tag);
         setaigenerated(true);
 
         }
        catch (err: any) {
+        toast.error("Something went wrong.")
       setError(err.response?.data?.message ?? "Something went wrong.");
     } finally {
       setLoading(false);
@@ -158,6 +163,8 @@ const [aigenrated, setaigenerated] = useState(Boolean(blog.summary));
                                               </div>
                                         ) )
                                     }
+
+                                           
                                     
                                 
                              </div>
@@ -171,6 +178,73 @@ const [aigenrated, setaigenerated] = useState(Boolean(blog.summary));
         
         
         </div>
+
+         {/* Footer */}
+                                          <footer className="py-16 mt-10 px-6 border-t border-gray-100">
+                                            <div className="max-w-6xl mx-auto">
+                                              <motion.div
+                                                initial={{ opacity: 0, y: 20 }}
+                                                whileInView={{ opacity: 1, y: 0 }}
+                                                transition={{ duration: 0.8, ease: "easeOut" }}
+                                                viewport={{ once: true }}
+                                                className="grid md:grid-cols-4 gap-12 mb-12"
+                                              >
+                                                <div className="md:col-span-2">
+                                                  <div className="flex items-center space-x-3 mb-4">
+                                                    <div className="w-8 h-8 bg-black rounded-2xl flex items-center justify-center">
+                                                      
+                                                    </div>
+                                                    <span className="text-xl font-semibold">SassyBlog</span>
+                                                  </div>
+                                                  <p className="text-gray-600 mb-6 max-w-md leading-relaxed">
+                                                    Intelligent writing tools that help you create better content with less effort.
+                                                  </p>
+                                                </div>
+                                    
+                                                <div>
+                                                  <h4 className="font-semibold mb-4 text-gray-900">Product</h4>
+                                                  <div className="space-y-3">
+                                                    <Link to={"/"} className="block text-gray-600 hover:text-black transition-colors text-sm">
+                                                      Features
+                                                    </Link>
+                                                    <Link to={"/"}  className="block text-gray-600 hover:text-black transition-colors text-sm">
+                                                      Pricing
+                                                    </Link>
+                                                    <Link to={"/"} className="block text-gray-600 hover:text-black transition-colors text-sm">
+                                                      Changelog
+                                                    </Link>
+                                                  </div>
+                                                </div>
+                                    
+                                                <div>
+                                                  <h4 className="font-semibold mb-4 text-gray-900">Company</h4>
+                                                  <div className="space-y-3">
+                                                    <Link to={"/"} className="block text-gray-600 hover:text-black transition-colors text-sm">
+                                                      About
+                                                    </Link>
+                                                    <Link to={"/"} className="block text-gray-600 hover:text-black transition-colors text-sm">
+                                                      Blog
+                                                    </Link>
+                                                    <Link to={"/signup"} className="block text-gray-600 hover:text-black transition-colors text-sm">
+                                                      Contact
+                                                    </Link>
+                                                  </div>
+                                                </div>
+                                              </motion.div>
+                                    
+                                              <div className="border-t border-gray-100 pt-8 flex flex-col md:flex-row items-center justify-between">
+                                                <p className="text-gray-500 text-sm">© 2024 SassyBlog. All rights reserved.</p>
+                                                <div className="flex space-x-6 mt-4 md:mt-0">
+                                                  <Link to={"/"} className="text-gray-500 hover:text-black transition-colors text-sm">
+                                                    Privacy
+                                                  </Link>
+                                                  <Link to={"/"} className="text-gray-500 hover:text-black transition-colors text-sm">
+                                                    Terms
+                                                  </Link>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </footer>
         </div>
         
     )
