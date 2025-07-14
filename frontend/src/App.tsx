@@ -7,6 +7,7 @@ import { Signin } from './pages/Signin';
 import { Blogs } from './pages/Blogs';
 import { Main } from './pages/Main';
 import { Comming } from './components/CommingSoon';
+import { Publish } from './components/Publish';
 
 function App() {
   
@@ -21,6 +22,7 @@ function App() {
          <Route path="/blog/:id" element={<Blog/>} />
          <Route path="/blogs" element={<Blogs/>} />
          <Route path="/commingsoon" element={<Comming/>} />
+         <Route path="/publish" element={<Publish/>} />
         
 
 
