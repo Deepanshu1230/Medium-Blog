@@ -1,8 +1,8 @@
 import { useState } from "react"
-import { Plus, MoreHorizontal, Bell, Sparkles, Eye, Clock, Heart, Feather } from "lucide-react"
+import {MoreHorizontal, Sparkles, Eye, Clock, Heart, Feather } from "lucide-react"
 import axios from "axios";
 import { BACKEND_URL } from "../config/config";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
 import { NewLoader } from "./Loader";
 
