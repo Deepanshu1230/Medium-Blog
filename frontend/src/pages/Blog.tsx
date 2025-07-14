@@ -15,7 +15,7 @@ export const Blog=()=>{
     });
 
 
-    if(loading){
+    if(loading || !blog ){
         return ( <div>
             <div><BlogNave /></div>
            <div>
