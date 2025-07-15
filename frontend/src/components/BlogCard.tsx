@@ -50,7 +50,7 @@ export const BlogCard=({authorname,publishdate,content,description,id}:BlogProps
         </div>
 
         {/* read */}
-        <div className="pt-6  pb-2">{`${Math.ceil(content.length/100)} Minute read`}</div>
+        <div className="pt-6  pb-2">{`${Math.ceil(content.length/100)} Minute Read`}</div>
        
 
     </div>

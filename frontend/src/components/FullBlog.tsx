@@ -20,6 +20,7 @@ const [tags, setTags] = useState<string[]>(blog.tags || []);
 const [aigenrated, setaigenerated] = useState(Boolean(blog.summary));
     const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const quote=getRandomQuote();
     
 
     const handleAiGenerate = async () =>{
@@ -135,10 +136,10 @@ const [aigenrated, setaigenerated] = useState(Boolean(blog.summary));
                              
                              {/* card */}
                              <div className="flex flex-col items-center justify-center border p-[24px] leading-7 gap-y-3 rounded-lg md:ml-7 mt-6 md:mt-2 ">
-                                <div className=""><Avatar name="Anonymous"/></div>
+                                <div className=""><Avatar name={blog.author.name || "Anonymous"}/></div>
                                 <div className="font-semibold text-xl">Author</div>
                                 <div className="text-lg">{blog.author.name || "Anonymous"}</div>
-                                <div className="text-sm"> helllo ji kasie ho saare ke sare</div>
+                                <div className="text-sm">{quote || "Hello"}</div>
 
                                 <div className="w-full  text-center py-2 text-green-600 border border-green-600 rounded-full bg-transparent"> follow</div>
                              
@@ -248,4 +249,15 @@ const [aigenrated, setaigenerated] = useState(Boolean(blog.summary));
         </div>
         
     )
+}
+const quotes = [
+  "Code is like humor. When you have to explain it, it’s bad.",
+  "Fix the cause, not the symptom.",
+  "Make it work, make it right, make it fast.",
+  "Simplicity is the soul of efficiency.",
+  "Talk is cheap. Show me the code.",
+];
+
+export function getRandomQuote() {
+  return quotes[Math.floor(Math.random() * quotes.length)];
 }
